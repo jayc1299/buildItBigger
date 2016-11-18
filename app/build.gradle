@@ -20,6 +20,7 @@ android {
     }
 }
 
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
@@ -27,6 +28,7 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:25.0.0'
     compile 'com.google.android.gms:play-services-ads:9.8.0'
-    compile project (':javajoke')
-    compile project (':androidjoke')
+    compile 'com.google.code.findbugs:jsr305:2.0.1'
+    compile project(':androidjoke')
+    compile project(path: ':googleCloudJoke', configuration: 'android-endpoints')
 }

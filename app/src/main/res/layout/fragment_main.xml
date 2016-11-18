@@ -22,6 +22,14 @@
         android:onClick="tellJoke"
         android:text="@string/button_text" />
 
+    <Button
+        android:id="@+id/fragment_main_gc_call"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/instructions_text_view"
+        android:layout_marginTop="80dp"
+        android:text="GC Call" />
+
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"
         android:layout_width="wrap_content"

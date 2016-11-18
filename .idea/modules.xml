@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/BuildItBigger.iml" filepath="$PROJECT_DIR$/BuildItBigger.iml" />
       <module fileurl="file://$PROJECT_DIR$/androidjoke/androidjoke.iml" filepath="$PROJECT_DIR$/androidjoke/androidjoke.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/googleCloudJoke/googleCloudJoke.iml" filepath="$PROJECT_DIR$/googleCloudJoke/googleCloudJoke.iml" />
       <module fileurl="file://$PROJECT_DIR$/javajoke/javajoke.iml" filepath="$PROJECT_DIR$/javajoke/javajoke.iml" />
     </modules>
   </component>
