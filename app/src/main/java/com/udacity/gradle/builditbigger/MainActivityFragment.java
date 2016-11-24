@@ -42,7 +42,7 @@ public class MainActivityFragment extends Fragment implements EndpointsAsyncTask
         getView().findViewById(R.id.fragment_main_gc_call).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new EndpointsAsyncTask().execute(new Pair<Context, EndpointsAsyncTask.IEndPointListener>(getActivity(), MainActivityFragment.this));
+                new EndpointsAsyncTask().execute(MainActivityFragment.this);
             }
         });
     }
