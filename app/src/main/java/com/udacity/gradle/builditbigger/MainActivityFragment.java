@@ -1,11 +1,9 @@
 package com.udacity.gradle.builditbigger;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +11,6 @@ import android.view.ViewGroup;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.udacity.gradle.androidlib.JokeActivity;
-
 
 /**
  * A placeholder fragment containing a simple view.
@@ -26,7 +23,7 @@ public class MainActivityFragment extends Fragment implements EndpointsAsyncTask
 
         AdView mAdView = (AdView) root.findViewById(R.id.adView);
 
-        if(BuildConfig.ENABLE_ADDS) {
+        if (BuildConfig.ENABLE_ADDS) {
             mAdView.setVisibility(View.VISIBLE);
             // Create an ad request. Check logcat output for the hashed device ID to
             // get test ads on a physical device. e.g.
@@ -35,7 +32,7 @@ public class MainActivityFragment extends Fragment implements EndpointsAsyncTask
                     .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
                     .build();
             mAdView.loadAd(adRequest);
-        }else{
+        } else {
             mAdView.setVisibility(View.GONE);
         }
         return root;
@@ -48,6 +45,7 @@ public class MainActivityFragment extends Fragment implements EndpointsAsyncTask
         getView().findViewById(R.id.fragment_main_gc_call).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ProgressSpinner.show(getActivity(), "Fetching Joke...");
                 new EndpointsAsyncTask().execute(MainActivityFragment.this);
             }
         });
@@ -55,6 +53,7 @@ public class MainActivityFragment extends Fragment implements EndpointsAsyncTask
 
     @Override
     public void onResponseReceived(String joke) {
+        ProgressSpinner.dismiss();
         Intent intent = new Intent(getActivity(), JokeActivity.class);
         intent.putExtra(JokeActivity.TAG_JOKE, joke);
         startActivity(intent);
