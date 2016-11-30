@@ -17,3 +17,27 @@ allprojects {
         jcenter()
     }
 }
+
+task allTogether(){
+    dependsOn ':runAppUiTests'
+    dependsOn ':stopAppEngine'
+}
+
+task startAppEngine(dependsOn: ':googleCloudJoke:appengineRun'){
+    //Must launch this as a seperate threat otherwise we'll just wait forever for googleCloudJoke to finish starting.
+    project(":googleCloudJoke").afterEvaluate { googleCloudJoke ->
+        googleCloudJoke.extensions.appengine.daemon = true
+    }
+}
+
+task stopAppEngine(){
+    dependsOn ':googleCloudJoke:appengineStop'
+}
+
+task runAppUiTests(){
+    dependsOn ':app:connectedAndroidTest'
+}
+
+//Add dependancies
+runAppUiTests.dependsOn startAppEngine
+runAppUiTests.mustRunAfter startAppEngine
