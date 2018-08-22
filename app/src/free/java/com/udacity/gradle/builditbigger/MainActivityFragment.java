@@ -28,18 +28,14 @@ public class MainActivityFragment extends Fragment implements EndpointsAsyncTask
 
         AdView mAdView = (AdView) root.findViewById(R.id.adView);
 
-        if (BuildConfig.ENABLE_ADDS) {
-            mAdView.setVisibility(View.VISIBLE);
-            // Create an ad request. Check logcat output for the hashed device ID to
-            // get test ads on a physical device. e.g.
-            // "Use AdRequest.Builder.addTestDevice("ABCDEF012345") to get test ads on this device."
-            AdRequest adRequest = new AdRequest.Builder()
-                    .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-                    .build();
-            mAdView.loadAd(adRequest);
-        } else {
-            mAdView.setVisibility(View.GONE);
-        }
+        mAdView.setVisibility(View.VISIBLE);
+        // Create an ad request. Check logcat output for the hashed device ID to
+        // get test ads on a physical device. e.g.
+        // "Use AdRequest.Builder.addTestDevice("ABCDEF012345") to get test ads on this device."
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .build();
+        mAdView.loadAd(adRequest);
         return root;
     }
 
@@ -62,17 +58,14 @@ public class MainActivityFragment extends Fragment implements EndpointsAsyncTask
         getView().findViewById(R.id.fragment_main_gc_call).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("add", "isLoaded: " + mInterstitialAd.isLoaded());
-                if(BuildConfig.ENABLE_ADDS && mInterstitialAd.isLoaded()) {
-                    mInterstitialAd.show();
-                }else{
-                    getJoke();
-                }
+            Log.d("add", "isLoaded: " + mInterstitialAd.isLoaded());
+
+            mInterstitialAd.show();
             }
         });
     }
 
-    private void getJoke(){
+    private void getJoke() {
         ProgressSpinner.show(getActivity(), getString(R.string.pending));
         new EndpointsAsyncTask().execute(MainActivityFragment.this);
     }
